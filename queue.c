@@ -35,8 +35,34 @@ void q_free(struct list_head *head)
 }
 
 /* Insert an element at head of queue */
+
+#ifndef strlcpy
+#define strlcpy(dst, src, sz) snprintf((dst), (sz), "%s", (src))
+#endif
+
 bool q_insert_head(struct list_head *head, char *s)
 {
+    if (!head)
+        return false;
+
+    struct element_t *first = malloc(sizeof(*first));
+
+    if (!first)
+        return false;
+
+    size_t len = strlen(s) + 1;
+    char *newstr = malloc(len); /* Allocate memory for the string (with '\0') */
+
+    if (!newstr)
+        return false;
+
+    strlcpy(newstr, s, len);
+    first->value = newstr;
+
+    INIT_LIST_HEAD(first->list);
+    first->list.next = head;
+    first->list.prev = head->prev;
+    head->prev = first;
     return true;
 }
 
