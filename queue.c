@@ -45,15 +45,15 @@ bool q_insert_head(struct list_head *head, char *s)
     if (!head)
         return false;
 
+    element_t *first = malloc(sizeof(element_t));
+
+    if (!first)
+        return false;
+
     size_t len = strlen(s) + 1;
     char *newstr = malloc(len); /* Allocate memory for the string (with '\0') */
 
     if (!newstr)
-        return false;
-
-    struct element_t *first = malloc(sizeof(*first));
-
-    if (!first)
         return false;
 
     strlcpy(newstr, s, len);
