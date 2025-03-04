@@ -59,10 +59,10 @@ bool q_insert_head(struct list_head *head, char *s)
     strlcpy(newstr, s, len);
     first->value = newstr;
 
-    INIT_LIST_HEAD(first->list);
     first->list.next = head;
     first->list.prev = head->prev;
-    head->prev = first;
+    head->prev = &first->list; /* Assignment to ‘struct list_head *’ from the
+                                  address of struct list_head in new node */
     return true;
 }
 
