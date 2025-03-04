@@ -82,7 +82,7 @@ bool q_insert_tail(struct list_head *head, char *s)
     last->list.prev = head->prev;
     head->prev = &last->list;
 
-    len = strlen(s) + 1;
+    size_t len = strlen(s) + 1;
     char *newstr = malloc(len);
     strlcpy(newstr, s, len);
     last->value = newstr;
