@@ -114,7 +114,7 @@ element_t *q_remove_tail(struct list_head *head, char *sp, size_t bufsize)
     if (!head || list_empty(head))
         return NULL;
 
-    element_t *lastnode = list_entry(head->prev, element_t, list);
+    element_t *lastnode = list_last_entry(head, element_t, list);
 
     head->prev = lastnode->list.prev;
     lastnode->list.prev->next = head;
