@@ -150,7 +150,7 @@ bool q_delete_mid(struct list_head *head)
     list_for_each (node, head) {
         count++;
         if ((count & 1) == 0)
-            temp = list_next_entry(temp, list);
+            temp = list_entry(temp->list.next, element_t, list);
     }
     list_del(&temp->list);
     free(temp);
