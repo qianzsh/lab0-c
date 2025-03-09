@@ -50,17 +50,15 @@ bool q_insert_head(struct list_head *head, char *s)
     if (!first)
         return false;
 
-    head->prev->next = &first->list;
-    first->list.next = head;
-    first->list.prev = head->prev;
-    head->prev = &first->list; /* Assignment to ‘struct list_head *’ from the
-                                  address of struct list_head in new node */
+    list_add(&first->list, head);
 
     size_t len = strlen(s) + 1;
     char *newstr = malloc(len); /* Allocate memory for the string (with '\0') */
 
-    if (!newstr)
+    if (!newstr) {
+        free(first);
         return false;
+    }
 
     strlcpy(newstr, s, len);
     first->value = newstr;
