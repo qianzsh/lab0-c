@@ -50,8 +50,6 @@ bool q_insert_head(struct list_head *head, char *s)
     if (!first)
         return false;
 
-    list_add(&first->list, head);
-
     size_t len = strlen(s) + 1;
     char *newstr = malloc(len); /* Allocate memory for the string (with '\0') */
 
@@ -62,6 +60,7 @@ bool q_insert_head(struct list_head *head, char *s)
 
     strlcpy(newstr, s, len);
     first->value = newstr;
+    list_add(&first->list, head);
 
     return true;
 }
