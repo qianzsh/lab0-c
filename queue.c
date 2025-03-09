@@ -42,7 +42,7 @@ void q_free(struct list_head *head)
 
 bool q_insert_head(struct list_head *head, char *s)
 {
-    if (!head)
+    if (!head || !s)
         return false;
 
     element_t *first = malloc(sizeof(element_t));
