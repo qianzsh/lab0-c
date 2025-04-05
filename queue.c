@@ -199,8 +199,9 @@ void q_reverse(struct list_head *head)
     if (!head || list_empty(head) || head->next->next == head)
         return;
 
-    const element_t *last = list_last_entry(head, element_t, list);
-    head->next = last->list;
+    element_t *last = list_last_entry(head, element_t, list);
+    head->prev = head->next;
+    head->next = &last->list;
 
     struct list_head *node = head->next;
     struct list_head *prev = head;
