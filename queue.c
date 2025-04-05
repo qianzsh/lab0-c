@@ -22,7 +22,7 @@ struct list_head *q_new()
     return head;
 }
 
-/* Free all storage used by queue*/
+/* Free all storage used by queue */
 void q_free(struct list_head *head)
 {
     if (!head)
@@ -145,9 +145,7 @@ int q_size(struct list_head *head)
 /* Delete the middle node in queue */
 bool q_delete_mid(struct list_head *head)
 {
-    if (!head || list_empty(head) || head->next->next == head)
-        return;
-    if (list_empty(head))
+    if (!head || list_empty(head))
         return false;
 
     struct list_head *node;
@@ -197,6 +195,7 @@ void q_swap(struct list_head *head)
 
 /* Reverse elements in queue */
 void q_reverse(struct list_head *head) {}
+
 /* Reverse the nodes of the list k at a time */
 void q_reverseK(struct list_head *head, int k)
 {
