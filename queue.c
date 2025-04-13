@@ -203,13 +203,13 @@ void q_reverse(struct list_head *head)
     head->prev = head->next;
     head->next = &last->list;
 
-    struct list_head *node = head->next;
+    struct list_head *cur = head->next;
     struct list_head *prev = head;
-    while (node != head) {
-        node->next = node->prev;
-        node->prev = prev;
-        prev = node;
-        node = node->next;
+    while (cur != head) {
+        cur->next = cur->prev;
+        cur->prev = prev;
+        prev = cur;
+        cur = cur->next;
     }
 }
 
