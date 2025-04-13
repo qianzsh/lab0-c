@@ -153,6 +153,7 @@ bool q_delete_mid(struct list_head *head)
             temp = list_entry(temp->list.next, element_t, list);
     }
     list_del(&temp->list);
+    free(temp->value);
     free(temp);
     // https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
     return true;
