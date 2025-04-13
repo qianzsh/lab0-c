@@ -130,7 +130,7 @@ int q_size(struct list_head *head)
     struct list_head *node;
     int count = 0;
 
-    list_for_each (node, head) {
+    list_for_each(node, head) {
         count++;
     }
     return count;
@@ -143,11 +143,11 @@ bool q_delete_mid(struct list_head *head)
         return false;
 
     struct list_head *node;
-    int count = 1;
+    int count = 0;
     element_t *temp = list_first_entry(head, element_t, list);
 
 
-    list_for_each (node, head) {
+    list_for_each(node, head) {
         count++;
         if ((count & 1) == 0)
             temp = list_entry(temp->list.next, element_t, list);
@@ -217,7 +217,7 @@ void q_reverseK(struct list_head *head, int k)
     struct list_head *node;
     int count = 0;
 
-    list_for_each (node, head)
+    list_for_each(node, head)
         count++;
 
     struct list_head *cur = head->next;  // The node currently being processed
